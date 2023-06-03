@@ -1,13 +1,13 @@
 ---
-namespace: geerlingguy
+namespace: frackena
 name: mac
-version: "1.2.0"
+version: "1.0.0"
 readme: README.md
 
 authors:
-  - geerlingguy
+  - FracKenA
 
-description: Collection of macOS automation tools for Ansible.
+description: Collection of macOS automation tools for Ansible. Adapted from https://github.com/FracKenA/ansible-collection-mac
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -35,13 +35,14 @@ tags:
   - imac
   - macmini
   - server
+  - tools
 
 dependencies:
   community.general: ">=3.0.0"
 
-repository: https://github.com/geerlingguy/ansible-collection-mac
-documentation: https://github.com/geerlingguy/ansible-collection-mac
+repository: https://github.com/FracKenA/ansible-collection-mac
+documentation: https://github.com/FracKenA/ansible-collection-mac
 homepage: https://www.jeffgeerling.com
-issues: https://github.com/geerlingguy/ansible-collection-mac/issues
+issues: https://github.com/FracKenA/ansible-collection-mac/issues
 
 build_ignore: []

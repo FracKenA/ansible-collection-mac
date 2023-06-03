@@ -4,8 +4,8 @@ Installs [mas](https://github.com/mas-cli/mas) on macOS, and installs macOS apps
 
 ## Requirements
 
-  - **Homebrew**: Requires `homebrew` already installed (you can use `geerlingguy.mac.homebrew` to install it on your Mac).
-  - **Mac App Store account**: You can either sign into the Mac App Store via the GUI before running this role, or you can set the `mas_email` and `mas_password` prior to running the role. For security reasons, if you're going to use this role to sign in, you should use `vars_prompt` for at least the password; don't store unencrypted passwords with your playbooks!
+- **Homebrew**: Requires `homebrew` already installed (you can use `frackena.mac.homebrew` to install it on your Mac).
+- **Mac App Store account**: You can either sign into the Mac App Store via the GUI before running this role, or you can set the `mas_email` and `mas_password` prior to running the role. For security reasons, if you're going to use this role to sign in, you should use `vars_prompt` for at least the password; don't store unencrypted passwords with your playbooks!
 
 ## Role Variables
 
@@ -51,7 +51,7 @@ A list of apps to uninstall from the computer, which were installed using the Ma
 
 ## Dependencies
 
-  - (Soft dependency) `geerlingguy.homebrew`
+- (Soft dependency) `frackena.mac.homebrew`
 
 ## Example Playbook
 
@@ -60,10 +60,10 @@ A list of apps to uninstall from the computer, which were installed using the Ma
         mas_installed_apps:
           - { id: 497799835, name: "Xcode (8.1)" }
       roles:
-        - geerlingguy.mac.homebrew
-        - geerlingguy.mac.mas
+        - frackena.mac.homebrew
+        - frackena.mac.mas
 
-See the [Mac Development Ansible Playbook](https://github.com/geerlingguy/mac-dev-playbook) for an example of this role's usage.
+<!-- See the [Mac Development Ansible Playbook](https://github.com//mac-dev-playbook) for an example of this role's usage. -->
 
 ## License
 
@@ -71,4 +71,4 @@ MIT / BSD
 
 ## Author Information
 
-This role was created in 2016 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+This collection was modified by [Ken Dobbins](https://github.com/FracKenA) as a fork of the repo [Ansible Collection Mac](https://github.com/geerlingguy/ansible-collection-mac) created by [Jeff Geerling](https://www.jeffgeerling.com), author of [Ansible for DevOps](https://www.ansiblefordevops.com).

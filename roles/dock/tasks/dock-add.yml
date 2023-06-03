@@ -1,6 +1,7 @@
 ---
-- name: "See if Dock item {{ item.name | default(item) }} exists."
-  ansible.builtin.command: "dockutil --find '{{ item.name }}'"
+- name: See if Dock item exists {{ dock_add_item.name | default(dock_add_item) }}.
+  ansible.builtin.command:
+    cmd: "dockutil --find '{{ dock_add_item.name }}'"
   register: dockitem_exists
   failed_when: >
     "No such file or directory" in dockitem_exists.stdout
@@ -9,13 +10,14 @@
   tags: ['dock']
 
 - name: Get current dock section from output.
-  set_fact:
+  ansible.builtin.set_fact:
     current_section: "{{ dockitem_exists.stdout | regex_replace('^.*was found in (.*) at slot.*$', '\\1') }}"
   when: dockitem_exists.rc == 0
   tags: ['dock']
 
-- name: Ensure Dock item {{ item.name | default(item) }} exists.
-  ansible.builtin.command: "dockutil --add '{{ item.path }}' --label '{{ item.name }}'"
+- name: Ensure Dock item exists {{ dock_add_item.name | default(dock_add_item) }}.
+  ansible.builtin.command:
+    cmd: "dockutil --add '{{ dock_add_item.path }}' --label '{{ dock_add_item.name }}'"
   when: dockitem_exists.rc >0 or
         dockitem_exists.rc == 0 and current_section == 'recent-apps'
   tags: ['dock']

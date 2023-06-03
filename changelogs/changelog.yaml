@@ -1,0 +1,8 @@
+---
+ancestor: null
+releases:
+  1.0.0:
+    date: 2023-06-03
+    changes:
+      release_summary: Initial release, incoporating changes from the original geerlingguy.mac Ansible role and correcting ansible-lint errors, rather than ignoring them.
+      major_changes: No major function changes. Many changes to the formatting, and syntax.

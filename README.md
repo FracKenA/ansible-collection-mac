@@ -1,34 +1,34 @@
 # Mac Collection for Ansible
 
-[![MIT licensed][badge-license]][link-license]
-[![Galaxy Collection][badge-collection]][link-galaxy]
-[![CI][badge-gh-actions]][link-gh-actions]
+<!-- [![MIT licensed][badge-license]][link-license] -->
+<!-- [![Galaxy Collection][badge-collection]][link-galaxy] -->
+<!-- [![CI][badge-gh-actions]][link-gh-actions] -->
 
-This collection includes helpful Ansible roles and content to help with macOS automation. For a good example of the collection's usage, see the [Mac Dev Playbook](https://github.com/geerlingguy/mac-dev-playbook).
+<!-- This collection includes helpful Ansible roles and content to help with macOS automation. For a good example of the collection's usage, see the [Mac Dev Playbook](https://github.com/geerlingguy/mac-dev-playbook). -->
 
 Roles included in this collection (click on the link to see the role's README and documentation):
 
-  - `geerlingguy.mac.homebrew` ([documentation](https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/homebrew/README.md))
-  - `geerlingguy.mac.mas` ([documentation](https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/mas/README.md))
-  - `geerlingguy.mac.dock` ([documentation](https://github.com/geerlingguy/ansible-collection-mac/blob/master/roles/dock/README.md))
+- `frackena.mac.homebrew` ([documentation](https://github.com/FracKenA/ansible-collection-mac/blob/master/roles/homebrew/README.md))
+- `frackena.mac.mas` ([documentation](https://github.com/FracKenA/ansible-collection-mac/blob/master/roles/mas/README.md))
+- `frackena.mac.dock` ([documentation](https://github.com/FracKenA/ansible-collection-mac/blob/master/roles/dock/README.md))
 
 ## Installation
 
 Install via Ansible Galaxy:
 
-```
-ansible-galaxy collection install geerlingguy.mac
+```shell
+ansible-galaxy collection install frackena.mac
 ```
 
 Or include this collection in your playbook's `requirements.yml` file:
 
-```
+```yaml
 ---
 collections:
-  - name: geerlingguy.mac
+  - name: frackena.mac
 ```
 
-For a real-world example, see my [Mac Dev Playbook's requirements file](https://github.com/geerlingguy/mac-dev-playbook/blob/master/requirements.yml).
+<!-- For a real-world example, see my [Mac Dev Playbook's requirements file](https://github.com/geerlingguy/mac-dev-playbook/blob/master/requirements.yml). -->
 
 ### Role Requirements
 
@@ -40,7 +40,7 @@ roles:
   - name: elliotweiser.osx-command-line-tools
 
 collections:
-  - name: geerlingguy.mac
+  - name: frackena.mac
 ```
 
 ## Usage
@@ -71,11 +71,11 @@ Here's an example playbook which installs some Mac Apps (assuming you are signed
       - vlc
 
   roles:
-    - geerlingguy.mac.homebrew
-    - geerlingguy.mac.mas
+    - frackena.mac.homebrew
+    - frackena.mac.mas
 ```
 
-For a real-world usage example, see my [Mac Dev Playbook](https://github.com/geerlingguy/mac-dev-playbook).
+<!-- For a real-world usage example, see my [Mac Dev Playbook](https://github.com/geerlingguy/mac-dev-playbook). -->
 
 See the full documentation for each role in the role's README, linked above.
 
@@ -85,12 +85,12 @@ MIT
 
 ## Author
 
-This collection was created by [Jeff Geerling](https://www.jeffgeerling.com), author of [Ansible for DevOps](https://www.ansiblefordevops.com).
+This collection was modified by [Ken Dobbins](https://github.com/FracKenA) as a fork of the repo [Ansible Collection Mac](https://github.com/geerlingguy/ansible-collection-mac) created by [Jeff Geerling](https://www.jeffgeerling.com), author of [Ansible for DevOps](https://www.ansiblefordevops.com).
 
-[badge-gh-actions]: https://github.com/geerlingguy/ansible-collection-mac/workflows/CI/badge.svg?event=push
-[link-gh-actions]: https://github.com/geerlingguy/ansible-collection-mac/actions?query=workflow%3ACI
-[badge-collection]: https://img.shields.io/badge/collection-geerlingguy.mac-blue
-[link-galaxy]: https://galaxy.ansible.com/geerlingguy/mac
-[badge-license]: https://img.shields.io/github/license/geerlingguy/ansible-collection-mac.svg
-[link-license]: https://github.com/geerlingguy/ansible-collection-mac/blob/master/LICENSE
-[badge-gh-actions]: https://github.com/geerlingguy/ansible-role-homebrew/workflows/CI/badge.svg?event=push
+<!-- [badge-gh-actions]: https://github.com/FracKenA/ansible-collection-mac/workflows/CI/badge.svg?event=push -->
+<!-- [link-gh-actions]: https://github.com/FracKenA/ansible-collection-mac/actions?query=workflow%3ACI -->
+<!-- [badge-collection]: https://img.shields.io/badge/collection-geerlingguy.mac-blue -->
+<!-- [link-galaxy]: https://galaxy.ansible.com/frackena/mac -->
+<!-- [badge-license]: https://img.shields.io/github/license/geerlingguy/ansible-collection-mac.svg -->
+<!-- [link-license]: https://github.com/FracKenA/ansible-collection-mac/blob/master/LICENSE -->
+<!-- [badge-gh-actions]: https://github.com/geerlingguy/ansible-role-homebrew/workflows/CI/badge.svg?event=push -->

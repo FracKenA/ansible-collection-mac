@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Test Ansible Collection
+  hosts: localhost
 
   vars:
     homebrew_clear_cache: true
@@ -32,6 +33,6 @@
 
   roles:
     - elliotweiser.osx-command-line-tools
-    - geerlingguy.mac.homebrew
-    - geerlingguy.mac.mas
-    - geerlingguy.mac.dock
+    - FracKenA.mac.homebrew
+    - FracKenA.mac.mas
+    - FracKenA.mac.dock
