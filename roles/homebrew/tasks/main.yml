@@ -8,7 +8,6 @@
 - name: Ensure Homebrew parent directory has correct permissions (M1).
   when: ansible_machine == 'arm64'
   become: true
-  become_method: sudo
   ansible.builtin.file:
     path: "{{ homebrew_prefix }}"
     owner: "{{ homebrew_user }}"
@@ -21,7 +20,6 @@
     - name: Ensure Homebrew parent directory has correct permissions (MacOS >= 10.13).
       when: "ansible_distribution_version is version('10.13', '>=')"
       become: true
-      become_method: sudo
       ansible.builtin.file:
         path: "{{ homebrew_prefix }}"
         owner: root
@@ -31,11 +29,11 @@
 
     - name: Ensure Homebrew parent directory has correct permissions (MacOS < 10.13).
       when: "ansible_distribution_version is version('10.13', '<')"
-      failed_when: true
+      ansible.builtin.fail:
+        msg: "Homebrew requires macOS 10.13 or higher."
 
 - name: Ensure Homebrew directory exists.
   become: true
-  become_method: sudo
   ansible.builtin.file:
     path: "{{ homebrew_install_path }}"
     owner: "{{ homebrew_user }}"
