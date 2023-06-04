@@ -32,7 +32,7 @@
       ansible.builtin.file:
         path: "{{ homebrew_prefix }}"
         owner: root
-        group: admin
+        group: wheel
         state: directory
         mode: u=rwx,g=rwx,o=rx
 
