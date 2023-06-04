@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/frackena/mac
 
@@ -46,7 +46,7 @@ jobs:
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: ansible_collections/FracKenA/mac
 
@@ -72,6 +72,9 @@ jobs:
 
       - name: Test the playbook's syntax.
         run: ansible-playbook tests/test.yml --syntax-check
+      
+      - name: Output the current permissions of the homebrew folder.
+        run: ls -al /usr/local
 
       - name: Test the playbook.
         run: ansible-playbook tests/test.yml
