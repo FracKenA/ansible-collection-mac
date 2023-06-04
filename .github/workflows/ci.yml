@@ -1,3 +1,4 @@
+---
 name: CI
 'on':
   pull_request:
@@ -29,7 +30,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      
+
       - name: Cache pip dependencies
         uses: actions/cache@v3
         with:
@@ -51,7 +52,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: 
+        os:
           - 'macos-13'
           - 'macos-12'
     steps:
@@ -77,7 +78,7 @@ jobs:
         run: |
           cp tests/ansible.cfg ./ansible.cfg
           cp tests/inventory ./inventory
-          ansible-galaxy install -r requirements.yml
+          ansible-galaxy install -r tests/requirements.yml
 
       - name: Test the playbook's syntax.
         run: ansible-playbook tests/test.yml --syntax-check
