@@ -33,6 +33,6 @@
 
   roles:
     - elliotweiser.osx-command-line-tools
-    - FracKenA.mac.homebrew
-    - FracKenA.mac.mas
-    - FracKenA.mac.dock
+    - role: ../roles/homebrew
+    - role: ../roles/mas
+    - role: ../roles/dock

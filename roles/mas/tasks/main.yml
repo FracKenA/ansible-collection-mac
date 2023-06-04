@@ -5,7 +5,9 @@
     state: present
 
 - name: Get MAS account status
-  ansible.builtin.command: mas account
+  ansible.builtin.shell:
+    cmd: mas account
+    executable: /bin/bash
   register: mas_account_result
   failed_when: mas_account_result.rc > 1
   check_mode: false
@@ -14,45 +16,56 @@
     - ansible_distribution_version is version('12', '<')
 
 - name: Sign in to MAS when email and password are provided.
-  ansible.builtin.command: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
+  ansible.builtin.shell:
+    cmd: 'mas signin "{{ mas_email }}" "{{ mas_password }}"'
+    executable: /bin/bash
   register: mas_signin_result
   when:
     - ansible_distribution_version is version('10.13', '<')
     - mas_account_result.rc == 1
-    - mas_email is truthy
-    - mas_password is truthy
+    - mas_email is defined and mas_password is defined and mas_email and mas_password
     - not mas_signin_dialog
   changed_when: false
 
 - name: Sign in to MAS when email is provided, and complete password and 2FA using dialog.
-  ansible.builtin.command: 'mas signin "{{ mas_email }}" "{{ mas_password }}" --dialog'
+  ansible.builtin.shell:
+    cmd: 'mas signin "{{ mas_email }}" "{{ mas_password }}" --dialog'
+    executable: /bin/bash
   register: mas_signin_result
   when:
     - ansible_distribution_version is version('10.13', '<')
     - mas_signin_dialog
     - mas_account_result.rc == 1
-    - mas_email is truthy
+    - mas_email is defined and mas_email
   changed_when: false
 
 - name: List installed MAS apps.
-  ansible.builtin.command: mas list
+  ansible.builtin.shell:
+    cmd: mas list
+    executable: /bin/bash
   register: mas_list
   check_mode: false
   changed_when: false
 
 - name: Ensure unwanted MAS apps are uninstalled.
-  ansible.builtin.command: mas uninstall "{{ item.id | default(item) }}"
+  ansible.builtin.shell:
+    cmd: mas uninstall "{{ item.id | default(item) }}"
+    executable: /bin/bash
   with_items: "{{ mas_uninstalled_apps }}"
   when: (item.id | default(item) | string) in mas_list.stdout
   changed_when: false
 
 - name: Ensure configured MAS apps are installed.
-  ansible.builtin.command: mas install "{{ item.id | default(item) }}"
+  ansible.builtin.shell:
+    cmd: mas install "{{ item.id | default(item) }}"
+    executable: /bin/bash
   with_items: "{{ mas_installed_apps + mas_installed_app_ids }}"
   when: (item.id | default(item) | string) not in mas_list.stdout
   changed_when: false
 
 - name: Upgrade all apps (if configured).
-  ansible.builtin.command: mas upgrade
+  ansible.builtin.shell:
+    cmd: mas upgrade
+    executable: /bin/bash
   when: mas_upgrade_all_apps
   changed_when: false

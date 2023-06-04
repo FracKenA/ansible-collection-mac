@@ -1,30 +1,36 @@
 ---
-- name: See if Dock item exists {{ dock_add_item.name | default(dock_add_item) }}.
-  ansible.builtin.command:
-    cmd: "dockutil --find '{{ dock_add_item.name }}'"
-  register: dockitem_exists
+- name: See if Dock item exists {{ dock_add.name | default(dock_add) }}.
+  ansible.builtin.shell:
+    cmd: "dockutil --find '{{ dock_add.name }}'"
+    executable: /bin/bash
+  register: dock_item_exists
   failed_when: >
-    "No such file or directory" in dockitem_exists.stdout
-    or "command not found" in dockitem_exists.stdout
+    ("command not found" in dock_item_exists.stdout) or
+    ("was not found" in dock_item_exists.stdout) or
+    (dock_item_exists.rc != 0)
   changed_when: false
   tags: ['dock']
 
 - name: Get current dock section from output.
   ansible.builtin.set_fact:
-    current_section: "{{ dockitem_exists.stdout | regex_replace('^.*was found in (.*) at slot.*$', '\\1') }}"
-  when: dockitem_exists.rc == 0
+    dock_current_section: "{{ dock_item_exists.stdout | regex_replace('^.*was found in (.*) at slot.*$', '\\1') }}"
+  when: dock_item_exists.rc == 0
   tags: ['dock']
 
-- name: Ensure Dock item exists {{ dock_add_item.name | default(dock_add_item) }}.
-  ansible.builtin.command:
-    cmd: "dockutil --add '{{ dock_add_item.path }}' --label '{{ dock_add_item.name }}'"
-  when: dockitem_exists.rc >0 or
-        dockitem_exists.rc == 0 and current_section == 'recent-apps'
+- name: Ensure Dock item exists {{ dock_add.name | default(dock_add) }}.
+  ansible.builtin.shell:
+    cmd: "dockutil --add '{{ dock_add.path }}' --label '{{ dock_add.name }}'"
+    executable: /bin/bash
+  when: dock_item_exists.rc > 0 or dock_item_exists.rc == 0 and dock_current_section == 'recent-apps'
+  register: dock_item_added
+  changed_when: dock_item_added.rc == 0
+  failed_when: >
+    ("Add failed" in dock_item_added.stdout) or
+    (dock_item_added.rc != 0)
   tags: ['dock']
 
 - name: Pause for 7 seconds between dock changes.
   ansible.builtin.pause:
     seconds: 7
-  when: dockitem_exists.rc >0 or
-        dockitem_exists.rc == 0 and current_section == 'recent-apps'
+  when: dock_item_exists.rc > 0 or dock_item_exists.rc == 0 and dock_current_section == 'recent-apps'
   tags: ['dock']

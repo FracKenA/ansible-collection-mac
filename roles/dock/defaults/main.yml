@@ -1,6 +1,6 @@
 ---
 # Dock items to remove.
-dockitems_remove: []
+dock_items_remove: []
 # - Launchpad
 # - TV
 # - Podcasts
@@ -8,13 +8,13 @@ dockitems_remove: []
 
 # Dock items to add. `pos` parameter is optional and will place the Dock item
 # in a particular position in the Dock.
-dockitems_persist: []
+dock_items_persist: []
 # - name: "Sublime Text"
 #   path: "/Applications/Sublime Text.app/"
 #   pos: 5
 
 # Which homebrew cask to install for dockutil
-dockutil_homebrew_cask: hpedrorodrigues/tools/dockutil
+dock_util_homebrew_cask: hpedrorodrigues/tools/dockutil
 
 # Whether to install dockutil or not
-dockutil_install: true
+dock_util_install: true

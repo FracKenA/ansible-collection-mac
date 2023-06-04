@@ -17,7 +17,7 @@
 
   vars:
     namespace: FracKenA
-    collection: mac
+    collection: macos
     # Requires github_tag to be set when calling playbook.
     release_tag: "{{ github_tag.split('/')[-1] }}"
 
@@ -31,7 +31,7 @@
       ansible.builtin.file:
         path: ~/.ansible
         state: directory
-        mode: preserve
+        mode: u=rwx,g=rw,o=rw
 
     - name: Write the Galaxy token to ~/.ansible/galaxy_token
       ansible.builtin.copy:
@@ -48,8 +48,13 @@
         line: 'version: "{{ release_tag }}"'
 
     - name: Build the collection.
-      ansible.builtin.command: ansible-galaxy collection build
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection build
+        executable: /bin/bash
+      changed_when: false
 
     - name: Publish the collection.
-      ansible.builtin.command: >
-        ansible-galaxy collection publish ./{{ namespace }}-{{ collection }}-{{ release_tag }}.tar.gz
+      ansible.builtin.shell:
+        cmd: ansible-galaxy collection publish ./{{ namespace }}-{{ collection }}-{{ release_tag }}.tar.gz
+        executable: /bin/bash
+      changed_when: false

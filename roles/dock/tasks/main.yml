@@ -2,25 +2,25 @@
 # See: https://github.com/kcrawford/dockutil/issues/127
 - name: Install dockutil.
   community.general.homebrew_cask:
-    name: "{{ dockutil_homebrew_cask }}"
+    name: "{{ dock_util_homebrew_cask }}"
     state: present
   notify:
     - Clear homebrew cache
-  when: dockutil_install
+  when: dock_util_install
   tags: ['dock']
 
 - name: Remove configured Dock items.
   ansible.builtin.include_tasks: dock-remove.yml
-  loop: "{{ dockitems_remove }}"
+  loop: "{{ dock_items_remove }}"
   loop_control:
-    loop_var: dock_remove_item
+    loop_var: dock_remove
   tags: ['dock']
 
 - name: Ensure required dock items exist.
   ansible.builtin.include_tasks: dock-add.yml
-  loop: "{{ dockitems_persist }}"
+  loop: "{{ dock_items_persist }}"
   loop_control:
-    loop_var: dock_add_item
+    loop_var: dock_add
   tags: ['dock']
 
 - name: Ensure dock items are in correct position.
@@ -28,7 +28,7 @@
   when:
     - item.pos is defined
     - item.pos > 0
-  loop: "{{ dockitems_persist }}"
+  loop: "{{ dock_items_persist }}"
   loop_control:
-    loop_var: dock_move_item
+    loop_var: dock_move
   tags: ['dock']

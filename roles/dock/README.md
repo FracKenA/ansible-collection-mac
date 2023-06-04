@@ -36,7 +36,7 @@ Whether to install dockutil or not. If set to false you'll need to have installe
 
 ## Dependencies
 
-- (Soft dependency) `frackena.mac.homebrew`
+- (Soft dependency) `frackena.macos.homebrew`
 
 ## Example Playbook
 
@@ -61,11 +61,11 @@ Whether to install dockutil or not. If set to false you'll need to have installe
         pos: 3
 
   roles:
-    - fraclena.mac.homebrew
-    - frackena.mac.dock
+    - fraclena.macos.homebrew
+    - frackena.macos.dock
 ```
 
-<!-- See the [Mac Development Ansible Playbook](https://github.com/geerlingguy/mac-dev-playbook) for an example of this role's usage. -->
+See my [Personal Mac Ansible Playbook](https://github.com/FracKenA/mac-ansible) for an example of this role's usage.
 
 ## License
 

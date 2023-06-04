@@ -42,7 +42,7 @@ dependencies:
 
 repository: https://github.com/FracKenA/ansible-collection-mac
 documentation: https://github.com/FracKenA/ansible-collection-mac
-homepage: https://www.jeffgeerling.com
+homepage: https://www.frackena.com
 issues: https://github.com/FracKenA/ansible-collection-mac/issues
 
 build_ignore: []

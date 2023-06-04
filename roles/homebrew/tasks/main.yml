@@ -111,12 +111,16 @@
   become_user: "{{ homebrew_user }}"
   block:
     - name: Force update brew after installation.
-      ansible.builtin.command: "{{ homebrew_brew_bin_path }}/brew update --force"
+      ansible.builtin.shell:
+        cmd: "{{ homebrew_brew_bin_path }}/brew update --force"
+        executable: /bin/bash
       when: not homebrew_binary.stat.exists
       changed_when: false
 
     - name: Where is the cache?
-      ansible.builtin.command: "{{ homebrew_brew_bin_path }}/brew --cache"
+      ansible.builtin.shell:
+        cmd: "{{ homebrew_brew_bin_path }}/brew --cache"
+        executable: /bin/bash
       register: homebrew_cache_path
       changed_when: false
       check_mode: false
@@ -178,7 +182,8 @@
       check_mode: false
 
     - name: Install from Brewfile.
-      ansible.builtin.command:
+      ansible.builtin.shell:
         cmd: "{{ homebrew_brew_bin_path }}/brew bundle chdir={{ homebrew_brewfile_dir }}"
+        executable: /bin/bash
       when: homebrew_brewfile.stat.exists and homebrew_use_brewfile
       changed_when: false

@@ -141,7 +141,7 @@ Any additional folders inside `homebrew_prefix` for which to ensure homebrew use
     homebrew_installed_packages:
         - mysql
     roles:
-    - frackena.mac.homebrew
+    - frackena.macos.homebrew
 ```
 
 See the `tests/local-testing` directory for an example of running this role over
@@ -161,13 +161,7 @@ This collection was modified by [Ken Dobbins](https://github.com/FracKenA) as a 
 - [Jeff Geerling](https://github.com/geerlingguy)
 - [Elliot Weiser](https://github.com/elliotweiser)
 
-<!-- [ansible-for-devops]: https://www.ansiblefordevops.com/ -->
-<!-- [author-website]: https://www.jeffgeerling.com/ -->
-<!-- [caskroom]: https://caskroom.github.io/search -->
 [homebrew]: http://brew.sh/
 [dep-osx-clt-role]: https://galaxy.ansible.com/elliotweiser/osx-command-line-tools/
-<!-- [link-galaxy]: https://galaxy.ansible.com/geerlingguy/homebrew/ -->
 [link-license]: https://raw.githubusercontent.com/FracKenA/ansible-role-homebrew/master/LICENSE
-<!-- [link-gh-actions]: https://github.com/geerlingguy/ansible-role-homebrew/actions?query=workflow%3ACI -->
-<!-- [mac-dev-playbook]: https://github.com/geerlingguy/mac-dev-playbook -->
 [link-vault-doc]: https://docs.ansible.com/ansible/latest/user_guide/vault.html#creating-encrypted-variables
