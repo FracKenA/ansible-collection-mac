@@ -73,8 +73,11 @@ jobs:
       - name: Test the playbook's syntax.
         run: ansible-playbook tests/test.yml --syntax-check
 
-      - name: Output the current permissions of the homebrew folder.
+      - name: Output the current permissions of the /usr/local directory.
         run: ls -al /usr/local
+
+      - name: Output the current permissions of the /usr directory.
+        run: ls -al /usr
 
       - name: Test the playbook.
         run: ansible-playbook tests/test.yml
